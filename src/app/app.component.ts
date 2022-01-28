@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import RegistrationService from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'flightapp-ui';
+
+  constructor(private registrationService: RegistrationService ){
+
+  }
+
 }

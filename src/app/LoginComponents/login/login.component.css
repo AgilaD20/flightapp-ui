@@ -1,0 +1,31 @@
+.form-control
+{
+    width: 100%;
+}
+
+.div-container{
+    width:700px;
+    margin-left:auto;
+    margin-right:auto;
+    background-color: #fff;
+    border-radius: 0.25rem;
+    border-color: black;
+}
+
+.form-group{
+    
+    box-shadow: h-offset v-offset blur color;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    margin: 5px auto; 
+    width:500px; 
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:10px;
+    height: 300px;
+    padding-right: 10px
+        
+    }
+
+    .container{
+        padding-top:5px;
+   }

@@ -1,0 +1,76 @@
+<div class="card">
+    <h5 class="card-header">{{SelectedFlight.airlineName}}</h5>
+    <div class="card-body">
+      <h5 class="card-title">{{SelectedFlight.fromLocation}} to {{SelectedFlight.destination}}</h5>
+      <p class="card-text">Flight on {{SelectedFlight.departureDate}}</p>
+      <p class="card-text">price {{SelectedFlight.price}}</p>
+      <!-- <a href="#" class="btn btn-primary">Confirm booking</a> -->
+      <div class="dropdown">
+        <label class="add-gap" for="meals">Meal preference</label>
+        <select name="mealPreference" id="meals" [(ngModel)]="bookingDetails.mealPreference">
+          <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"> -->
+          <option value="VEG">Veg</option>
+          <option value="NON VEG">Non Veg</option>
+          <!-- </div> -->
+        </select>
+      </div>
+      <form #PassengerForm="ngForm" class="container mt-3" (ngSubmit)="confirmBooking(PassengerForm.value)">
+        
+          <div class="col-6">
+            <button type="button" class="btn btn-primary mb-2" (click)="addPassenger()">Add passenger</button>
+            <section class="container border mb-4 p-3" *ngFor="let passenger of passengers; let i = index;">
+              <div class="row">
+                <div class="col-6">
+                  <h4>Passenger {{i + 1}}</h4>
+                </div>
+                <div class="col-6 text-right">
+                  <button type="button" class="btn btn-danger btn-sm" (click)="removePassenger(i)">Remove
+                    Passenger</button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" [(ngModel)]="passenger.passengerName" name="passengerName_{{passenger.id}}">
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <label>Gender</label>
+                    <input type="text" class="form-control" [(ngModel)]="passenger.gender" name="gender_{{passenger.id}}">
+                  </div>
+                </div>
+              </div>
+  
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label>Age</label>
+                    <input type="number" class="form-control" [(ngModel)]="passenger.age" name="age_{{passenger.id}}">
+                  </div>
+                </div>
+              </div>
+            
+  
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label>seat</label>
+                  <select type="text" [(ngModel)]="passenger.seatNumber" class="form-control" name="seatNumber_{{passenger.id}}">
+                    <option *ngFor="let seat of availableSeats">{{seat}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </section>
+            <div class="text-right">
+              <input type="submit" class="btn btn-success" value="Submit"></div>
+  
+            </div>
+      
+  
+      </form>
+    </div>
+  </div>
+  <button (click)="cliked()">Click</button>

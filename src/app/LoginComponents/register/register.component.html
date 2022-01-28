@@ -1,0 +1,26 @@
+<!-- <div class="container bg-white"> -->
+
+  <p *ngIf="registrationsuccesful" class="alert alert-success">Registeration is successful.</p>
+<form #userRegister="ngForm" class="form-group bg-white" (ngSubmit)="OnClickSubmit(userRegister.value)" >
+  <div class="col-md-4">
+  <p><label  class="form-label" for="emailid">Email address</label></p>
+  <input type = "text" class="form-control" name = "emailid" placeholder = "emailid" ngModel>
+</div>
+<div class="col-md-4 mb-3">
+  <p><label class="form-label" for="firstname">First Name</label></p>
+  <input type = "text" class="form-control" name = "firstname" placeholder = "firstname" ngModel>
+ </div>
+<div class="col-md-4 mb-3">
+  <p><label  class="form-label" for="lastname">Last Name</label></p>
+  <input type = "text" class="form-control" name = "lastname" placeholder = "lastname" ngModel>
+</div>
+<div class="col-md-4 mb-3">
+  <p><label class="form-label" for="password">Password</label></p>
+  <input type = "password"  class="form-control" name = "password" placeholder = "password" ngModel>
+</div>
+<div class="col-md-4 mb-3">
+  <input type = "submit" class="btn btn-primary" value = "submit">
+</div>
+</form>
+
+<!-- </div> -->

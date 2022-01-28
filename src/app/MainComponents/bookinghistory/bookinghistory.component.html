@@ -1,0 +1,14 @@
+<div *ngFor="let booking of bookings">
+    <div class="card">
+        <h5 class="card-header">{{booking.flightName}}</h5>
+        <div class="card-body">
+          <h5 class="card-title">PNR {{booking.pnr}}</h5>
+          <p class="card-text">{{booking.flightId}} Jounery On: {{ booking.departureDate }}</p>
+          <p class="card-text">{{booking.fromLocation}} to {{booking.destination }}</p>
+          <p class="card-text">Passenger Details: {{booking.passengerdetails}}</p>
+            <p class="card-text">Seat Number: {{booking.seatNumbers}}</p>
+          <!-- <p class="card-text" *ngFor ="let passenger of passengerArray">{{passenger}}}</p> -->
+          
+        </div>
+      </div>
+</div>

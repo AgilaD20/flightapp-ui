@@ -1,0 +1,11 @@
+<div class="card">
+    <h5 class="card-header">{{flight.flightName}}</h5>
+    <div class="card-body">
+      <h5 class="card-title">PNR {{bookedTicket.pnr}}</h5>
+      <p class="card-text">{{bookedTicket.flightId}} Jounery On: {{flight.departureDate }}</p>
+      <p class="card-text">{{flight.fromLocation}} to {{flight.destination }}</p>
+      <p class="card-text">Passenger Details:</p>
+      <p class="card-text" *ngFor ="let passenger of passengerArray">{{passenger}}</p>
+      <a class="btn btn-primary" (click)="gotoHistory()">Go to booking history to view ticket</a>
+    </div>
+  </div>

@@ -1,0 +1,21 @@
+.registerform {
+     padding-left:20%;
+     box-sizing: border-box;
+     /* border-color: aqua; */
+    
+}
+
+.form-group{
+    
+box-shadow: h-offset v-offset blur color;
+box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+margin: 5px auto; 
+width:700px; 
+padding-top:10px;
+padding-bottom:10px;    
+}
+
+.container{
+     padding-top:5px;
+     
+}

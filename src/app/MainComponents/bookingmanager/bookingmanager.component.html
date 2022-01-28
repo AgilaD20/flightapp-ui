@@ -1,0 +1,52 @@
+<div class="card">
+  <h5 class="card-header">{{SelectedFlight.airlineName}}</h5>
+  <div class="card-body">
+    <h5 class="card-title">{{SelectedFlight.fromLocation}} to {{SelectedFlight.destination}}</h5>
+    <p class="card-text">Flight on {{SelectedFlight.departureDate}}</p>
+    <p class="card-text">price {{SelectedFlight.price}}</p>
+    <!-- <a href="#" class="btn btn-primary">Confirm booking</a> -->
+    <div class="dropdown">
+      <label class="add-gap" for="meals">Meal preference</label>
+      <select name="mealPreference" id="meals" [(ngModel)]="bookingDetails.mealPreference">
+        <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"> -->
+        <option value="VEG">Veg</option>
+        <option value="NON_VEG">Non Veg</option>
+        <!-- </div> -->
+        <br>
+      </select>
+    </div>
+    <button class="btn btn-outline-primary btn-sm" (click)='addPassenger()'>Add Passenger</button>
+   <form [formGroup]="passengerForm" (ngSubmit)='updatePassenger()'>
+    
+    <div formArrayName="passengers" *ngFor="let t of passengers.controls; let i = index">
+      
+      <div [formGroupName]="i">
+        <div class="form-row">
+        <div class="col">
+      <label for="{{'name'+i}}">Name</label>
+    <input id="{{'name'+i}}" class="form-control" type="text" formControlName="passengerName">
+  </div>
+  <div class="col">
+    <label for="{{'gender'+i}}">Gender</label>
+    <input id="{{'gender'+i}}" class="form-control" type="text" formControlName="gender">
+  </div>
+  <div class="col">
+    <label for="{{'age'+i}}">Age</label>
+    <input id="{{'age'+i}}" class="form-control" type="number" formControlName="age">
+  </div>
+  <div class="col">
+    <label for="{{'seat'+i}}">Seat Number</label>
+    <select id ="{{'seat'+i}}" class="form-control" type="text" formControlName="seatNumber" >
+      <option value="-1">Select seat number</option>
+      <option *ngFor="let seat of availableSeats">{{seat}}</option>
+    </select>
+  </div>
+  </div>
+    </div>
+    </div>
+    <br>
+    <button class="btn btn-primary" type="submit">Submit</button>
+   </form>
+  </div>
+</div>
+<!-- <button (click)="cliked()">Click</button> -->

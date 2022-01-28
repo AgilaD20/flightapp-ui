@@ -1,0 +1,61 @@
+<div class="card">
+  <div class="from-group">
+    <div class="side-by-side">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+          (change)="selectRoundTrip()" checked>
+        <label class="form-check-label" for="flexRadioDefault1">
+          One Way
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+          (change)="selectRoundTrip()">
+        <label class="form-check-label" for="flexRadioDefault2">
+          Round Trip
+        </label>
+      </div>
+    </div>
+    <div class="side-by-side">
+      <div class="label-field">
+        <label class="form-label reduce-gap" for="from">
+          From </label>
+        <input class="form-control form-control-2" type="text" id="from" placeholder="from"
+          [(ngModel)]="searchFlight.fromLocation">
+      </div>
+      <div class="label-field">
+        <label class="form-label reduce-gap" for="to">
+          To </label>
+        <input class="form-control form-control-2" type="text" id="to" placeholder="to"
+          [(ngModel)]="searchFlight.destination">
+      </div>
+    </div>
+
+    <div class="side-by-side onward-return">
+      <div class="label-field">
+        <label class="form-label reduce-gap" for="onward">
+          Onward Journey </label>
+        <input type="date" id="onward" class="form-control form-control-2 date-picker" name="onwarddate"
+          [(ngModel)]="searchFlight.departureDate">
+      </div>
+      <div class="label-field">
+        <label class="form-label reduce-gap" for="">
+          Return Journey </label>
+        <input type="date" id="return" [disabled]="isDisabled" class="form-control form-control-2 date-picker"
+          name="returndate">
+      </div>
+    </div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button class="btn btn-primary" (click)="search()">search</button>
+  </div>
+    <section class="card">
+      <ag-grid-angular #agGrid style="width: 100%; height: 300px;" class="ag-theme-alpine" [rowData]="rowData"
+        [columnDefs]="columnDefs" rowSelection="single" (gridReady)="onGridReady($event)"
+        (rowSelected)="onRowSelected()">
+      </ag-grid-angular>
+    </section>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button class="btn btn-primary" (click)="redirectToBookingManager()">Continue Booking</button>
+  </div>
+  </div>
+</div>
