@@ -1,14 +1,17 @@
 <div class="card">
   <div class="from-group">
-    <div class="side-by-side">
-      <div class="form-check">
+    <div class="row">
+      <p  *ngIf="searchNotFound" class="alert alert-warning">No Flights found for the given criteria</p>
+    </div>
+    <div class="row">
+      <div class="col-auto">
         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
           (change)="selectRoundTrip()" checked>
         <label class="form-check-label" for="flexRadioDefault1">
           One Way
         </label>
       </div>
-      <div class="form-check">
+      <div class="col-auto">
         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
           (change)="selectRoundTrip()">
         <label class="form-check-label" for="flexRadioDefault2">

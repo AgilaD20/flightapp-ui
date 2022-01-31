@@ -22,11 +22,13 @@ export class FlightResult {
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
-  styleUrls: ['./booking.component.css']
+  styleUrls: ['./booking.component.scss']
 })
 export class BookingComponent implements OnInit {
 
   isDisabled : Boolean=true;
+
+  searchNotFound : Boolean = false;
 
   searchFlight: SearchFlight = new SearchFlight();
 
@@ -57,42 +59,19 @@ export class BookingComponent implements OnInit {
   }
 
 
-  // saveSelect() {
-  //   alert("you selected a row");
-  //   let selectedRow = this.gridApi.getSelectedRows();
-  //   this.selected= selectedRow[0];
-
-  //   console.log(this.selected);
-  // }
-
   onRowSelected() {
     alert("you selected a row");
     let selectedRow = this.gridApi.getSelectedRows();
     this.selected = selectedRow[0];
     this.selectedDataservice.changeValue(this.selected);
     console.log(this.selected);
-    //console.log($event);
+ 
 
   }
-
-//    gridOptions : GridOptions = {
-//     // set background colour on every row, this is probably bad, should be using CSS classes
-//     rowStyle: { background: 'black' },
-
-//     // set background colour on even rows again, this looks bad, should be using CSS classes
-    
-
-//     // other grid options ...
-// }
-
 
   ngOnInit(): void {
 
   }
-
-  // this.selectedDataservice.currentlySelected.subscribe(data=>{
-  //   this.selected=data;
-  // });
 
   redirectToBookingManager() {
     this.router.navigateByUrl("/bookingmanager");
@@ -100,13 +79,26 @@ export class BookingComponent implements OnInit {
 
   search() {
 
-    this.bookingService.book(this.searchFlight).subscribe(response => {
+    this.bookingService.book(this.searchFlight).subscribe(
+     (response) => {
       this.rowData = response;
+    },
+    ()=>{
+      this.handleNoError();
     })
   }
 
   selectRoundTrip(){
     this.isDisabled=!this.isDisabled;
+  }
+
+  handleNoError(){
+    this.searchNotFound=true;
+    console.log("Search didn't return any result");
+    setTimeout(()=>{
+      this.searchNotFound=false;
+    },3000);
+    
   }
 
 }

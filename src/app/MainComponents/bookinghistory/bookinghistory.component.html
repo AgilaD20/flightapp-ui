@@ -8,7 +8,8 @@
           <p class="card-text">Passenger Details: {{booking.passengerdetails}}</p>
             <p class="card-text">Seat Number: {{booking.seatNumbers}}</p>
           <!-- <p class="card-text" *ngFor ="let passenger of passengerArray">{{passenger}}}</p> -->
-          
+          <button *ngIf="(!booking.isCancelled)&&iscancellable(booking.departureDate)" class="btn btn-secondary btn-sm" (click)="cancelTicket(booking.pnr)">Cancel Ticket</button>
+          <p *ngIf="booking.isCancelled||(cancelled&&cancelledpnr==booking.pnr)" class="alert alert-secondary">Ticket was cancelled</p>
         </div>
       </div>
 </div>

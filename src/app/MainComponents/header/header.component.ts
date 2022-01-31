@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import RegistrationService from 'src/app/services/login.service';
 
 @Component({
@@ -12,6 +12,8 @@ export class HeaderComponent implements OnInit {
 
   loggedIn: Boolean = false;
 
+  @Output() adminLoggedIn = new EventEmitter<Boolean>();
+
   ngOnInit(): void {
     this.registrationService.currentStatusLogin.subscribe(data=>this.loggedIn=data);
   }
@@ -19,6 +21,11 @@ export class HeaderComponent implements OnInit {
   logout(){
 
     this.registrationService.logout();
+  }
+
+  setAdminLogin(){
+    this.adminLoggedIn.emit(true);
+    this.registrationService.updateAdminLoginStatus(true)
   }
 
   

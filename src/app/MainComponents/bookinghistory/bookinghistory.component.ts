@@ -31,6 +31,10 @@ export class BookinghistoryComponent implements OnInit {
 
   bookings : Booking[]=[];
 
+  cancelled : Boolean = false;
+
+  cancelledpnr : number =0;
+
   constructor(private bookingService: BookingService, private registrationService : RegistrationService) { }
 
   ngOnInit(): void {
@@ -41,6 +45,27 @@ export class BookinghistoryComponent implements OnInit {
 
   setBookings(data: Booking[]){
 this.bookings = data;
+  }
+  iscancellable(departureDate: Date){
+    console.log(departureDate>new Date());
+    if(new Date(departureDate).valueOf()-new Date().valueOf()>1)
+    {
+      return true;
+    }
+    return false;
+  }
+
+  cancelTicket(pnr : number){
+    this.cancelled=false;
+  this.cancelledpnr=pnr;
+       this.bookingService.cancelTicket(pnr).subscribe(()=>{console.log("Ticket was cancelled");
+      this.displayCancelled();});
+
+  }
+
+  displayCancelled(){
+  this.cancelled=true;
+  window.location.reload();
   }
 
 }

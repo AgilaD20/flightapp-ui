@@ -9,19 +9,33 @@ import RegistrationService from 'src/app/services/login.service';
 })
 export class LoginComponent implements OnInit {
 
+  adminLoggedIn : Boolean = false;
+
   constructor(private service: RegistrationService, private router : Router) { }
 
   ngOnInit(): void {
+    this.service.currentAdminLogin.subscribe(data=>this.adminLoggedIn =data );
   }
 
   login(data:any){
-    console.log("works")
+    if(this.adminLoggedIn)
+    {
+      const promise = this.service.adminlogin({userEmail:data.email,password:data.password});
+      promise.subscribe(response=>{
+  console.log(response);})
+  this.router.navigateByUrl("/adminhome");
+  
+  }
+    else{
     const promise = this.service.login({userEmail:data.email,password:data.password});
     promise.subscribe(response=>{
-console.log(response);
+    console.log(response);
     })
     this.router.navigateByUrl("/book");
-
+    }
   }
+    
+
+  
 
 }

@@ -1,0 +1,39 @@
+    <form [formGroup]="SearchScheduleForm" class="form-group bg-white" (ngSubmit)="getSchedules(SearchScheduleForm.value)" >
+      <div class="col-md-4">
+      <p><label  class="form-label" for="airlinename">Airline Name</label></p>
+      <select id ="airlinename" class="form-control" type="text" formControlName="airlineName">
+        <option value="-1">Select Airline</option>
+        <option *ngFor="let airline of airlineNames">{{airline}}</option>
+      </select>
+    </div>
+    <div class="col-md-4 mb-3">
+      <p><label class="form-label" for="from">From Location</label></p>
+      <input type = "text" class="form-control" id="from" name = "from" formControlName="fromLocation">
+     </div>
+    <div class="col-md-4 mb-3">
+      <p><label  class="form-label" for="destination">Destination</label></p>
+      <input type = "text" class="form-control" id="destination" name = "destination" formControlName="destination">
+    </div>
+    <div class="col-md-4 mb-3">
+      <button type = "submit" class="btn btn-primary" value = "submit">Search</button>
+    </div>
+</form>
+<!-- <div *ngIf="searchdone"> -->
+<div *ngFor="let flight of flightResult; let i as index">
+    <div class="card">
+        <!-- <h5 class="card-header">{{flight.airlineName}}</h5> -->
+        <div class="card-body">
+          <!-- <h5 class="card-title"> {{airline.address}}</h5> -->
+          <div class="row">
+            <!-- <p>{{flight.airlineName}}</p> -->
+            <p class="col-sm">{{flight.flightName}}</p>
+            <p class="col-sm">{{flight.fromLocation}}</p>
+            <p class="col-sm">{{flight.destination}}</p>
+            <p class="col-sm">{{flight.departureDate}}</p>
+            <button class="col-sm" (click)="updateSchedule()">Edit schedule Details</button>
+          </div>
+            
+        </div>
+      </div>
+</div>
+<!-- </div> -->

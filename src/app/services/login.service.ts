@@ -16,6 +16,10 @@ export default class RegistrationService {
 
     loggedIn: Boolean = false;
 
+    adminLogin :Boolean = false;
+
+    currentAdminLogin = new BehaviorSubject(this.adminLogin);
+
     currentStatusLogin = new BehaviorSubject(this.loggedIn);
 
     constructor(private http: HttpClient, private cookieService: CookieService, private router: Router) {
@@ -50,11 +54,28 @@ export default class RegistrationService {
             console.log(response);
             var date = new Date();
             date.setTime(date.getTime() + (5 * 60 * 60 * 1000));
+            this.cookieService.deleteAll();
             this.cookieService.set("jwt", response.jwt, date);
             this.cookieService.set("useremail", credential.userEmail, date);
             this.updateLoginStatus(true);
         }));
     }
+
+    adminlogin(credential: { userEmail: string, password: string }) {
+
+        return this.http.post<{ jwt: string }>("http://localhost:8081/api/v1.0/flight/airline/authenticate", credential, {
+            headers: { "content-type": "application/json", }
+        }).pipe(map(response => {
+            console.log(response);
+            var date = new Date();
+            date.setTime(date.getTime() + (5 * 60 * 60 * 1000));
+            this.cookieService.deleteAll();
+            this.cookieService.set("jwt", response.jwt, date);
+            this.cookieService.set("useremail", credential.userEmail, date);
+            this.updateLoginStatus(true);
+        }));
+    }
+
 
     logout() {
         this.cookieService.delete("jwt");
@@ -65,6 +86,10 @@ export default class RegistrationService {
 
     updateLoginStatus(currentStatus: Boolean) {
         this.currentStatusLogin.next(currentStatus);
+    }
+
+    updateAdminLoginStatus(currentStatus: Boolean){
+        this.currentAdminLogin.next(currentStatus);
     }
 
 }

@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, } from '@angular/forms';
-import {ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { CommonModule } from "@angular/common";
 
@@ -23,6 +23,11 @@ import { BookingComponent } from './MainComponents/booking/booking.component';
 import { BookingmanagerComponent } from './MainComponents/bookingmanager/bookingmanager.component';
 import { TicketComponent } from './MainComponents/ticket/ticket.component';
 import { BookinghistoryComponent } from './MainComponents/bookinghistory/bookinghistory.component';
+import { AdminheaderComponent } from './AdminComponents/adminheader/adminheader.component';
+import { AdminhomeComponent } from './AdminComponents/adminhome/adminhome.component';
+import { AddAirlineComponent } from './AdminComponents/add-airline/add-airline.component';
+import { ManagescheduleComponent } from './AdminComponents/manageschedule/manageschedule.component';
+//import { GlobalErrorHandlerService } from './services/global-error-handler.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,11 @@ import { BookinghistoryComponent } from './MainComponents/bookinghistory/booking
     BookingmanagerComponent,
     TicketComponent,
     BookinghistoryComponent,
-    
+    AdminheaderComponent,
+    AdminhomeComponent,
+    AddAirlineComponent,
+    ManagescheduleComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -45,9 +54,10 @@ import { BookinghistoryComponent } from './MainComponents/bookinghistory/booking
     CommonModule,
     ReactiveFormsModule,
     AgGridModule.withComponents([])
-    
+
   ],
-  providers: [RegistrationService, BookingService, { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],
+  providers: [RegistrationService, BookingService, { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

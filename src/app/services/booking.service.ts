@@ -48,7 +48,9 @@ export default class BookingService{
       })
     }
 
-    
+    cancelTicket(pnr : number){
+        return this.http.delete("http://localhost:8083/api/v1.0/user/flight/booking/cancel/"+pnr);
+      }
 
     
 }

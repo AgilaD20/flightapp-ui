@@ -1,9 +1,5 @@
-/* @import "~ag-grid-community/src/styles/ag-grid.scss";
-@import "~ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin"; */
-
-
-
-
+@import "~ag-grid-community/src/styles/ag-grid.scss";
+@import "~ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin";
 
 
 .form-control
@@ -30,6 +26,8 @@
     margin-left:auto;
     margin-right:auto;
 }
+
+
 
 body{
     background-color: 564F6F;
@@ -65,7 +63,10 @@ body{
     padding-top:5px;
 }
 
-body{
-    background-color: rgba(0,0,0,.03);
+.row{
+    padding: 5px;
+    margin-left: 5px;
+    
 }
+
 

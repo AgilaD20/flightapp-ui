@@ -1,4 +1,5 @@
 <div>
-<app-header></app-header>
+<app-header *ngIf="!adminLoginStatus" (adminLoggedIn)="switchHeader($event)"></app-header>
+<app-adminheader *ngIf="adminLoginStatus" (userLoggedIn)="switchHeader($event)"></app-adminheader>
 <router-outlet></router-outlet>
 </div>

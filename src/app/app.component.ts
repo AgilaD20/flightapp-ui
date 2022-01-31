@@ -9,8 +9,15 @@ import RegistrationService from 'src/app/services/login.service';
 export class AppComponent {
   title = 'flightapp-ui';
 
+  adminLoginStatus: Boolean = false;
+
   constructor(private registrationService: RegistrationService ){
 
   }
+ 
+  switchHeader(newStatus: Boolean){
+    this.adminLoginStatus = newStatus;
+  }
+  
 
 }

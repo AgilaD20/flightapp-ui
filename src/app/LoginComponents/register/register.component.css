@@ -5,12 +5,22 @@
     
 }
 
-.form-group{
+
+
+.btn{
+     margin-top:10px; 
+    
+}
+.col-auto{
+     padding-top:5px; 
+}
+
+.box-shadow{
     
 box-shadow: h-offset v-offset blur color;
 box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 margin: 5px auto; 
-width:700px; 
+width:400px; 
 padding-top:10px;
 padding-bottom:10px;    
 }

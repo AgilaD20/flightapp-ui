@@ -1,0 +1,65 @@
+<div *ngFor="let airline of airlines; let i as index">
+  <div class="card">
+    <h5 class="card-header">{{airline.airlineName}}</h5>
+    <div class="card-body">
+      <h5 class="card-title">Address {{airline.address}}</h5>
+      <p class="card-text">Contact: {{airline.contact}}</p>
+      <div class="row">
+        <div class="col-md-offset-2">
+      <button *ngIf="airline.isBlocked" class="btn btn-secondary" (click)="unblock(airline.airlineName)">un
+        Block</button>
+      </div>
+      <div class="col-md-offset-2">
+      <button *ngIf="!airline.isBlocked" class="btn btn-info" (click)="block(airline.airlineName)">Block</button>
+    </div>
+    <div class="col-md-offset-2">
+      <button *ngIf="!airline.isBlocked" class="btn btn-info" (click)="openAddFlight(airline.airlineName)">Add
+        Flight</button>
+      </div>
+      </div>
+      <div class="row">
+      <div *ngIf="added&&selectedAirline==airline.airlineName">
+        <p class="alert alert-success">Flight was added successfully</p>
+      </div>
+    </div>
+    <div class="row">
+      <div *ngIf="addFlight&&selectedAirline==airline.airlineName">
+        <form [formGroup]="createFlightForm" (ngSubmit)="creatflight(createFlightForm.value, airline.airlineName)">
+          <div class="row">
+            <div class="col-auto">
+              <label class="control-label" for="flightname">Flight Name</label>
+              <input type="text" id="flightname" class="form-control" formControlName="flightName">
+            </div>
+            <div class="col-auto">
+              <label class="control-label" for="fromLocation">From Location</label>
+              <input type="text" id="fromLocation" class="form-control" formControlName="fromLocation">
+            </div>
+            <div class="col-auto">
+              <label class="control-label" for="destination">Destination</label>
+              <input type="text" id="destination" class="form-control" formControlName="destination">
+            </div>
+            <div class="col-auto">
+              <label class="control-label" for="availableSeats">Number of seats</label>
+              <input type="number" id="availableSeats" class="form-control" formControlName="availableSeats">
+            </div>
+            <div class="col-auto">
+              <label class="control-label" for="departureDate">Departure date</label>
+              <input type="date" id="departureDate" class="form-control" formControlName="departureDate">
+            </div>
+            <div class="col-auto">
+              <label class="control-label" for="price">Price</label>
+              <input type="number" id="price" class="form-control" formControlName="price">
+            </div>
+            <div class="col">
+              <br>
+              <br>
+              <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+      <!-- <p class="card-text" *ngFor ="let passenger of passengerArray">{{passenger}}}</p> -->
+    </div>
+  </div>
+</div>
