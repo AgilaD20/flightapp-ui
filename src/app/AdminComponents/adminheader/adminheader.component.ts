@@ -16,15 +16,23 @@ export class AdminheaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.registrationService.currentStatusLogin.subscribe(data=>this.loggedIn=data);
+    if(sessionStorage.getItem("loggedin")=="true"){
+      this.loggedIn=true;
+    }
+    if(sessionStorage.getItem("whois")=="user"){
+      this.userLoggedIn.emit(false);
+    }
   }
 
   setuserLogin(){
+    sessionStorage.setItem("whois","user");
     this.userLoggedIn.emit(false);
+    this.registrationService.updateAdminLoginStatus(false);
   }
 
   logout(){
 
-    this.registrationService.logout();
+    this.registrationService.adminlogout();
   }
 
 }

@@ -44,7 +44,19 @@
             </div>
             <div class="col-auto">
               <label class="control-label" for="departureDate">Departure date</label>
-              <input type="date" id="departureDate" class="form-control" formControlName="departureDate">
+              <input type="date" [min]="todayDate"  id="departureDate" class="form-control" formControlName="departureDate">
+            </div>
+            <div class="col-auto">
+              <label class="control-label" for="endDate">End date</label>
+              <input type="date" [min]="todayDate" id="endDate" class="form-control" formControlName="endDate">
+            </div>
+            <div class="col-auto">
+              <mat-label class="control-label">Choose schedules</mat-label>
+              <!-- <mat-form-field> -->
+              <mat-select class="form-control" formControlName="requestedSchedule"  multiple [(value)]="selectedSchedule" placeholder="choose schedule" >
+                <mat-option *ngFor="let weekday of weekdays" [value]="weekday">{{weekday}}</mat-option>
+            </mat-select>
+          <!-- </mat-form-field> -->
             </div>
             <div class="col-auto">
               <label class="control-label" for="price">Price</label>

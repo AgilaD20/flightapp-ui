@@ -22,8 +22,8 @@ export default class BookingService{
         })
     }
 
-    allavailableSeat(flightid: number){
-        return this.http.get<String[]>("http://localhost:8083/api/v1.0/user/flight/availableseats/"+flightid,{
+    allavailableSeat(searchRequest:any){
+        return this.http.post<String[]>("http://localhost:8083/api/v1.0/user/flight/availableseats/",searchRequest,{
             headers:{
                 "content-type": "application/json"
             }

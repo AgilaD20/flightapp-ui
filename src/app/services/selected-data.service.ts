@@ -17,9 +17,38 @@ private Selected: FlightResult ={
   fromLocation: '',
   destination: '',
   tripType: '',
-  flightID:0
+  flightID: 0,
+  endDate: new Date
 };
 
+private ReturnSelected: FlightResult ={
+  airlineName: '',
+  flightName: '',
+  availableSeats: 0,
+  price: 0,
+  departureDate: new Date,
+  fromLocation: '',
+  destination: '',
+  tripType: '',
+  flightID: 0,
+  endDate: new Date
+};
+private journeyDate: Date= new Date;
+private returnJourneyDate: Date = new Date;
+
+private returnbookedTicket : Ticket={
+  flightId: 0,
+  mealPreference: '',
+  price: 0,
+  passengerCount: 0,
+  passengerdetails: new String,
+  userName: '',
+  userEmail: '',
+  seatNumbers: new String,
+  isCancelled: false,
+  pnr: 0,
+  departureDate: new Date
+}
 
 private bookedTicket: Ticket = {
   flightId: 0,
@@ -31,12 +60,25 @@ private bookedTicket: Ticket = {
   userEmail: '',
   seatNumbers: new String,
   isCancelled: false,
-  pnr: 0
+  pnr: 0,
+  departureDate: new Date
 }
+
+isReturnJourney : Boolean = false;
+
+currentlyIsRetrunJourney = new BehaviorSubject(this.isReturnJourney);
 
 currentlySelected= new BehaviorSubject(this.Selected);
 
 currentlyBookedTicket = new BehaviorSubject(this.bookedTicket);
+
+currentlyJourneyDate = new BehaviorSubject(this.journeyDate);
+
+currentlyreturnSelected = new BehaviorSubject(this.ReturnSelected);
+
+currentlyReturnJourneyDate = new BehaviorSubject(this.returnJourneyDate);
+
+currentlyBookedReturnTicket = new BehaviorSubject(this.returnbookedTicket);
 
   constructor() {
     
@@ -50,5 +92,25 @@ currentlyBookedTicket = new BehaviorSubject(this.bookedTicket);
 
    updateBookedTicket(currentTicket: Ticket){
      this.currentlyBookedTicket.next(currentTicket);
+   }
+
+   updateJourneyDate(currentJourneyDate: Date){
+     this.currentlyJourneyDate.next(currentJourneyDate);
+   }
+
+   changeReturnValue(changedValue: FlightResult){
+     this.currentlyreturnSelected.next(changedValue);
+   }
+
+   updateReturnJourneyDate(currentReturnJourneyDate: Date){
+     this.currentlyReturnJourneyDate.next(currentReturnJourneyDate);
+   }
+
+   udpateIsRetrunJourney(currentValue: Boolean){
+     this.currentlyIsRetrunJourney.next(currentValue);
+   }
+
+   updateReturnBookedTicket(currentValue: Ticket){
+this.currentlyBookedReturnTicket.next(currentValue);
    }
 }

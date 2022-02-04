@@ -13,7 +13,7 @@
       </div>
       <div class="col-auto">
         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
-          (change)="selectRoundTrip()">
+          (change)="selectRoundTrip()" required>
         <label class="form-check-label" for="flexRadioDefault2">
           Round Trip
         </label>
@@ -24,13 +24,13 @@
         <label class="form-label reduce-gap" for="from">
           From </label>
         <input class="form-control form-control-2" type="text" id="from" placeholder="from"
-          [(ngModel)]="searchFlight.fromLocation">
+          [(ngModel)]="searchFlight.fromLocation" required>
       </div>
       <div class="label-field">
         <label class="form-label reduce-gap" for="to">
           To </label>
         <input class="form-control form-control-2" type="text" id="to" placeholder="to"
-          [(ngModel)]="searchFlight.destination">
+          [(ngModel)]="searchFlight.destination" required>
       </div>
     </div>
 
@@ -38,25 +38,33 @@
       <div class="label-field">
         <label class="form-label reduce-gap" for="onward">
           Onward Journey </label>
-        <input type="date" id="onward" class="form-control form-control-2 date-picker" name="onwarddate"
-          [(ngModel)]="searchFlight.departureDate">
+        <input type="date" [min]="todayDate" id="onward" class="form-control form-control-2 date-picker" name="onwarddate"
+          [(ngModel)]="searchFlight.departureDate" required>
       </div>
       <div class="label-field">
         <label class="form-label reduce-gap" for="">
           Return Journey </label>
-        <input type="date" id="return" [disabled]="isDisabled" class="form-control form-control-2 date-picker"
-          name="returndate">
+        <input type="date" id="return" [attr.disabled]="isDisabled ? true: null" class="form-control form-control-2 date-picker"
+          name="returndate" [(ngModel)]="searchReturnFlight.departureDate">
       </div>
     </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <button class="btn btn-primary" (click)="search()">search</button>
   </div>
-    <section class="card">
-      <ag-grid-angular #agGrid style="width: 100%; height: 300px;" class="ag-theme-alpine" [rowData]="rowData"
+  <div *ngIf="!isDisabled" class="row">
+    <div class="col">Onward Journey</div>
+    <div class="col">Return Journey </div>
+  </div>
+    <div class="row">
+      <ag-grid-angular #agGrid style="width: 45%; height: 300px;" class="ag-theme-alpine" [rowData]="rowData"
         [columnDefs]="columnDefs" rowSelection="single" (gridReady)="onGridReady($event)"
         (rowSelected)="onRowSelected()">
       </ag-grid-angular>
-    </section>
+      <ag-grid-angular *ngIf="!isDisabled" #agGrid style="width: 45%; height: 300px;" class="ag-theme-alpine" [rowData]="ReturnrowData"
+        [columnDefs]="columnDefs" rowSelection="single" (gridReady)="onGridReady1($event)"
+        (rowSelected)="onReturnJourneyRowSelected()">
+      </ag-grid-angular>
+    </div> 
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <button class="btn btn-primary" (click)="redirectToBookingManager()">Continue Booking</button>
   </div>

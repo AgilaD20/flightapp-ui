@@ -16,15 +16,22 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.registrationService.currentStatusLogin.subscribe(data=>this.loggedIn=data);
+    if(sessionStorage.getItem("loggedin")=="true"){
+      this.loggedIn=true;
+    }
+    if(sessionStorage.getItem("whois")=="admin"){
+      this.adminLoggedIn.emit(true);
+    }
   }
 
   logout(){
-
-    this.registrationService.logout();
+    this.registrationService.userlogout();
   }
 
   setAdminLogin(){
-    this.adminLoggedIn.emit(true);
+    sessionStorage.setItem("whois","admin");
+    console.log(' setting admin loggedin');
+    this.adminLoggedIn.emit(true);  
     this.registrationService.updateAdminLoginStatus(true)
   }
 

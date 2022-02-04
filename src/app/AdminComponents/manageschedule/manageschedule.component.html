@@ -15,9 +15,18 @@
       <input type = "text" class="form-control" id="destination" name = "destination" formControlName="destination">
     </div>
     <div class="col-md-4 mb-3">
-      <button type = "submit" class="btn btn-primary" value = "submit">Search</button>
+      <button type = "submit" class="btn btn-primary" value = "submit">Search schedule</button>
     </div>
 </form>
+<div *ngIf ="searchdone" class="row">
+  <!-- <p>{{flight.airlineName}}</p> -->
+  <p class="col-sm">FlightName</p>
+  <p class="col-sm">FromLocation</p>
+  <p class="col-sm">Destination</p>
+  <p class="col-sm">Start Date</p>
+  <p class="col-sm">End Date</p>
+  <p class="col-sm">Edit schedule</p>
+</div>
 <!-- <div *ngIf="searchdone"> -->
 <div *ngFor="let flight of flightResult; let i as index">
     <div class="card">
@@ -30,6 +39,7 @@
             <p class="col-sm">{{flight.fromLocation}}</p>
             <p class="col-sm">{{flight.destination}}</p>
             <p class="col-sm">{{flight.departureDate}}</p>
+            <p class="col-sm">{{flight.endDate}}</p>
             <button class="col-sm" (click)="updateSchedule()">Edit schedule Details</button>
           </div>
             

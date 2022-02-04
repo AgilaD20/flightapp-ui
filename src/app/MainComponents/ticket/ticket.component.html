@@ -1,11 +1,30 @@
 <div class="card">
-    <h5 class="card-header">{{flight.flightName}}</h5>
+  <h5 *ngIf="isReturnJourney">Onward Journey</h5>
+    <h5 class="card-header">PNR {{bookedTicket.pnr}}</h5>
     <div class="card-body">
-      <h5 class="card-title">PNR {{bookedTicket.pnr}}</h5>
-      <p class="card-text">{{bookedTicket.flightId}} Jounery On: {{flight.departureDate }}</p>
-      <p class="card-text">{{flight.fromLocation}} to {{flight.destination }}</p>
-      <p class="card-text">Passenger Details:</p>
+      <h5 class="card-title">{{flight.fromLocation}} to {{flight.destination }}</h5>
+      <p class="card-text">{{flight.airlineName}} {{flight.flightName}} {{bookedTicket.flightId}}</p>
+      <p class="card-text"><b>Jounery On: </b>{{bookedTicket.departureDate }}</p>
+      <p class="card-text"><b>Passenger Details:</b></p>
       <p class="card-text" *ngFor ="let passenger of passengerArray">{{passenger}}</p>
+      <p class="card-text"><b>Seat Numbers: </b> {{bookedTicket.seatNumbers}}</p>
+      <p class="card-text"><b>Price: </b> {{bookedTicket.price}}</p>
       <a class="btn btn-primary" (click)="gotoHistory()">Go to booking history to view ticket</a>
     </div>
   </div>
+
+  <div *ngIf="isReturnJourney" class="card">
+    <h5>Return Journey</h5>
+    <h5 class="card-header">PNR {{bookedReturnTicket.pnr}}</h5>
+    <div class="card-body">
+      <h5 class="card-title">{{returnFlight.fromLocation}} to {{returnFlight.destination }}</h5>
+      <p class="card-text">{{returnFlight.airlineName}} {{returnFlight.flightName}} {{bookedReturnTicket.flightId}}</p>
+      <p class="card-text"><b>Jounery On: </b>{{bookedReturnTicket.departureDate }}</p>
+      <p class="card-text"><b>Passenger Details:</b></p>
+      <p class="card-text" *ngFor ="let passenger of returnpassengerArray">{{passenger}}</p>
+      <p class="card-text"><b>Seat Numbers: </b> {{bookedReturnTicket.seatNumbers}}</p>
+      <p class="card-text"><b>Price: </b> {{bookedReturnTicket.price}}</p>
+      <a class="btn btn-primary" (click)="gotoHistory()">Go to booking history to view ticket</a>
+    </div>
+  </div>
+  

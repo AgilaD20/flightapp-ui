@@ -58,6 +58,7 @@ export default class RegistrationService {
             this.cookieService.set("jwt", response.jwt, date);
             this.cookieService.set("useremail", credential.userEmail, date);
             this.updateLoginStatus(true);
+            sessionStorage.setItem("loggedin","true")
         }));
     }
 
@@ -73,19 +74,32 @@ export default class RegistrationService {
             this.cookieService.set("jwt", response.jwt, date);
             this.cookieService.set("useremail", credential.userEmail, date);
             this.updateLoginStatus(true);
+            sessionStorage.setItem("loggedin","true");
         }));
     }
 
 
-    logout() {
+    userlogout() {
         this.cookieService.delete("jwt");
         this.cookieService.delete("useremail");
         this.updateLoginStatus(false);
+        sessionStorage.setItem("loggedin","false")
+        sessionStorage.setItem("whois","user");
+        this.router.navigateByUrl("/login");
+    }
+
+    adminlogout() {
+        this.cookieService.delete("jwt");
+        this.cookieService.delete("useremail");
+        this.updateLoginStatus(false);
+        sessionStorage.setItem("loggedin","false")
+        sessionStorage.setItem("whois","admin");
         this.router.navigateByUrl("/login");
     }
 
     updateLoginStatus(currentStatus: Boolean) {
         this.currentStatusLogin.next(currentStatus);
+        
     }
 
     updateAdminLoginStatus(currentStatus: Boolean){

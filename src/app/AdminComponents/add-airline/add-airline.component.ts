@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AirlineDetails } from 'src/app/models/AirlineDetails';
 import { AdminService } from 'src/app/services/adminservices.service';
 
@@ -19,7 +20,7 @@ export class AddAirlineComponent implements OnInit {
   successMessage : string="";
   added: Boolean = false;
 
-  constructor(private adminservices: AdminService) { }
+  constructor(private adminservices: AdminService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -27,10 +28,14 @@ export class AddAirlineComponent implements OnInit {
   addAirline(){
     const promise = this.adminservices.addAirline(this.airlineForm.value);
     promise.subscribe(data=>this.displaySucccessMessage());
+    
   }
   displaySucccessMessage(){
     this.successMessage = "Airline was added successfully";
     this.added = true;
+    setTimeout(()=>{
+      this.router.navigateByUrl("/adminhome")
+    },3000)
   }
 
 }

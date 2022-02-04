@@ -2,6 +2,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 import { CommonModule } from "@angular/common";
 
@@ -27,7 +28,11 @@ import { AdminheaderComponent } from './AdminComponents/adminheader/adminheader.
 import { AdminhomeComponent } from './AdminComponents/adminhome/adminhome.component';
 import { AddAirlineComponent } from './AdminComponents/add-airline/add-airline.component';
 import { ManagescheduleComponent } from './AdminComponents/manageschedule/manageschedule.component';
-//import { GlobalErrorHandlerService } from './services/global-error-handler.service';
+import { GlobalErrorHandlerService } from './services/GlobalErrorHandlerService.serice'
+import {  MatSelectModule  } from '@angular/material/select';
+import {  MatFormFieldModule  } from '@angular/material/form-field';
+import {MatDialogModule} from '@angular/material/dialog'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -43,6 +48,7 @@ import { ManagescheduleComponent } from './AdminComponents/manageschedule/manage
     AdminhomeComponent,
     AddAirlineComponent,
     ManagescheduleComponent,
+    
 
   ],
   imports: [
@@ -53,11 +59,16 @@ import { ManagescheduleComponent } from './AdminComponents/manageschedule/manage
     HttpClientModule,
     CommonModule,
     ReactiveFormsModule,
-    AgGridModule.withComponents([])
+    MatSelectModule,
+    MatFormFieldModule,
+    AgGridModule.withComponents([]),
+    BrowserAnimationsModule,
+    MatDialogModule
 
   ],
-  providers: [RegistrationService, BookingService, { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-   ],
+  providers: [RegistrationService, BookingService, DatePipe, { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
+    // {provide: ErrorHandler, useClass: GlobalErrorHandlerService}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

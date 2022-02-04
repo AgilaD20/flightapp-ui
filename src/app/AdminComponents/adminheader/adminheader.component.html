@@ -17,7 +17,7 @@
           <button *ngIf="!loggedIn"  type="button" class="btn btn-warning" >Sign-up</button>
           <button *ngIf="loggedIn"  type="button" class="btn btn-warning" (click)="logout()" >Logout</button>
         </div>
-        <a href="#" class="nav-link px-2 text-white" (click)="setuserLogin()" >Log in as User</a>
+        <a href="#" class="nav-link px-2 text-white" routerLink="/login" (click)="setuserLogin()" >Log in as User</a>
       </div>
     </div>
   </header>

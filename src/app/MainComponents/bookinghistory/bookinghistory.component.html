@@ -1,15 +1,32 @@
+<div *ngIf="noBookings">
+  <p class="alert alert-warning" style="justify-content: center;">You haven't booked any tickets yet</p>
+</div>
 <div *ngFor="let booking of bookings">
     <div class="card">
-        <h5 class="card-header">{{booking.flightName}}</h5>
-        <div class="card-body">
-          <h5 class="card-title">PNR {{booking.pnr}}</h5>
-          <p class="card-text">{{booking.flightId}} Jounery On: {{ booking.departureDate }}</p>
-          <p class="card-text">{{booking.fromLocation}} to {{booking.destination }}</p>
-          <p class="card-text">Passenger Details: {{booking.passengerdetails}}</p>
-            <p class="card-text">Seat Number: {{booking.seatNumbers}}</p>
+        <h5 class="card-header">PNR {{booking.pnr}}</h5>
+        <div class="card-body row">
+          <div class="col-auto">
+          <h5 class="card-title">{{booking.fromLocation}} to {{booking.destination }}</h5>
+        </div>
+        <div class="col-auto">
+          <p class="card-text"><b>{{booking.airlineName}} </b>{{booking.flightName}} {{booking.flightId}}</p>
+        </div>
+        <div class="col-auto">
+          <p class="card-text"><b>Jounery On: </b> {{ booking.departureDate }}</p>
+        </div>
+        <div class="col-auto">
+          <p class="card-text"><b>Passenger Details: </b>{{booking.passengerdetails}}</p>
+        </div>
+        <div class="col-auto">  
+          <p class="card-text"><b>Seat Number: </b>{{booking.seatNumbers}}</p>
           <!-- <p class="card-text" *ngFor ="let passenger of passengerArray">{{passenger}}}</p> -->
+        </div>
+        <div class="col-auto">
           <button *ngIf="(!booking.isCancelled)&&iscancellable(booking.departureDate)" class="btn btn-secondary btn-sm" (click)="cancelTicket(booking.pnr)">Cancel Ticket</button>
+        </div>
+        <div class="col-4">
           <p *ngIf="booking.isCancelled||(cancelled&&cancelledpnr==booking.pnr)" class="alert alert-secondary">Ticket was cancelled</p>
         </div>
       </div>
+      
 </div>

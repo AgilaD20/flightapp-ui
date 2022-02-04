@@ -1,6 +1,8 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 //import { promises } from 'dns';
+
 import { AirlineDetails } from 'src/app/models/AirlineDetails';
 import { AdminService } from 'src/app/services/adminservices.service';
 
@@ -11,7 +13,9 @@ export class createFlight{
 	"destination": string="";
 	"price":number=0;
 	"departureDate": Date=new Date;
+  "endDate": Date = new Date;
   "airlineName": string="";
+  "requestedSchedule" : number[]=[];
 }
 
 @Component({
@@ -38,8 +42,16 @@ export class AdminhomeComponent implements OnInit {
     destination: '',
     price: 0,
     departureDate: new Date,
-    airlineName: ''
+    airlineName: '',
+    endDate: new Date,
+    requestedSchedule: []
   }
+
+  todayDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+
+  weekdays: string[]=["MON", "TUE", "WED", "THURS", "FRI", "SAT","SUN"];
+
+  selectedSchedule :string[]=[]
 
   createFlightForm = new FormGroup(
     {
@@ -49,15 +61,18 @@ export class AdminhomeComponent implements OnInit {
 	"destination": new FormControl(''),
 	"price":new FormControl(0),
 	"departureDate": new FormControl(new Date),
+  "endDate": new FormControl(new Date),
+  "requestedSchedule" : new FormControl('')
+
     }
   )
 
-  constructor(private adminService : AdminService) { }
+
+  constructor(private adminService : AdminService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
     const promise = this.adminService.getAllAirlines();
     promise.subscribe(data=>this.airlines=data);
-
   }
 
   block(airlineName: string){

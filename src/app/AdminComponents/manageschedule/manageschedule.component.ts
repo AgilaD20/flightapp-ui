@@ -47,8 +47,7 @@ export class ManagescheduleComponent implements OnInit {
   getSchedules(data: SearchSchedule){
     const promise = this.adminservice.getSchedules(data);
     promise.subscribe(data=>this.getSearchResult(data));
-    console.log("happening");
-    console.log(data);
+    
   }
 
   getSearchResult(data: FlightResult[]){
