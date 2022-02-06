@@ -25,6 +25,14 @@ export class ManagescheduleComponent implements OnInit {
 
   searchdone: Boolean= false;
 
+  extended: Boolean = false;
+
+  flightname: string='';
+
+  extendedEndDate= new Date;
+
+  extendedsuccess = false;
+
   SearchScheduleForm = new FormGroup({
     airlineName: new FormControl(""),
     fromLocation: new FormControl(""),
@@ -55,8 +63,14 @@ export class ManagescheduleComponent implements OnInit {
     this.searchdone = true;
   }
 
-  updateSchedule(){
-    
+  updateSchedule(flightName: string){
+    this.extended=true;
+    this.flightname=flightName;
+  }
+  submitEditedschedule(){
+      this.adminservice.updateEndDate({flightName:this.flightname, endDate:this.extendedEndDate}).subscribe(
+        ()=>{this.extendedsuccess=true}
+      )
   }
 
 }

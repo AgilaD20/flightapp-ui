@@ -40,7 +40,15 @@
             <p class="col-sm">{{flight.destination}}</p>
             <p class="col-sm">{{flight.departureDate}}</p>
             <p class="col-sm">{{flight.endDate}}</p>
-            <button class="col-sm" (click)="updateSchedule()">Edit schedule Details</button>
+            <div class="col-sm">
+            <button class="btn btn-secondary" (click)="updateSchedule(flight.flightName)">Edit schedule Details</button>
+            <div *ngIf="extended&&flightname==flight.flightName&&extendedsuccess"><p class="alert alert-success">Schedule was updated successfully!</p></div>
+            <div *ngIf="extended&&flightname==flight.flightName&&!extendedsuccess">
+            <label class="form-label" for="extendedenddate">New end date</label>
+      <input type = "date" [min]="flight.endDate" class="form-control" id="extendedenddate" name = "extendedenddate" [(ngModel)]="extendedEndDate">
+      <button class="btn btn-primary btn-sm" (click)="submitEditedschedule()">Submit</button>
+    </div>        
+    </div>
           </div>
             
         </div>

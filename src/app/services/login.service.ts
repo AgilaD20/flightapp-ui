@@ -21,6 +21,8 @@ export default class RegistrationService {
     currentAdminLogin = new BehaviorSubject(this.adminLogin);
 
     currentStatusLogin = new BehaviorSubject(this.loggedIn);
+    private FLIGHT_URL: string="http://44.201.139.156:8083/api/v1.0/user";
+    private ADMIN_URL : string="http://44.201.139.156:8081/api/v1.0/flight/airline";
 
     constructor(private http: HttpClient, private cookieService: CookieService, private router: Router) {
     }
@@ -39,7 +41,7 @@ export default class RegistrationService {
 
     save(user: userregistrationForm) {
 
-        return this.http.post("http://localhost:8083/api/v1.0/user/register", user, {
+        return this.http.post(this.FLIGHT_URL+"/register", user, {
             headers: {
                 "content-type": "application/json"
             }
@@ -48,7 +50,7 @@ export default class RegistrationService {
 
     login(credential: { userEmail: string, password: string }) {
 
-        return this.http.post<{ jwt: string }>("http://localhost:8083/api/v1.0/user/authenticate", credential, {
+        return this.http.post<{ jwt: string }>(this.FLIGHT_URL+"/authenticate", credential, {
             headers: { "content-type": "application/json", }
         }).pipe(map(response => {
             console.log(response);
@@ -64,7 +66,7 @@ export default class RegistrationService {
 
     adminlogin(credential: { userEmail: string, password: string }) {
 
-        return this.http.post<{ jwt: string }>("http://localhost:8081/api/v1.0/flight/airline/authenticate", credential, {
+        return this.http.post<{ jwt: string }>(this.ADMIN_URL+"/authenticate", credential, {
             headers: { "content-type": "application/json", }
         }).pipe(map(response => {
             console.log(response);

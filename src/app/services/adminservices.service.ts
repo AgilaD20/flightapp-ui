@@ -12,29 +12,35 @@ export class AdminService {
 
   constructor(private http: HttpClient) { }
 
+  private FLIGHT_URL: string="http://44.201.139.156:8081/api/v1.0/flight/airline";
+
   addAirline(airlineDetails : AirlineDetails){
-    return this.http.post<AirlineDetails>("http://localhost:8081/api/v1.0/flight/airline/register",airlineDetails);
+    return this.http.post<AirlineDetails>(this.FLIGHT_URL+"/register",airlineDetails);
   }
 
   getAllAirlines()
   {
-    return this.http.get<AirlineDetails[]>("http://localhost:8081/api/v1.0/flight/airline/allairlines");
+    return this.http.get<AirlineDetails[]>(this.FLIGHT_URL+"/allairlines");
   }
 
   block(airlineName: String){
-      return this.http.put("http://localhost:8081/api/v1.0/flight/airline/blockairline/"+airlineName,"");
+      return this.http.put(this.FLIGHT_URL+"/blockairline/"+airlineName,"");
   }
 
   unblock(airlineName: String){
-    return this.http.put("http://localhost:8081/api/v1.0/flight/airline/unblockairline/"+airlineName,"");
+    return this.http.put(this.FLIGHT_URL+"/unblockairline/"+airlineName,"");
 }
 
   getSchedules(searchSchedule: SearchSchedule){
-    return this.http.post<FlightResult[]>("http://localhost:8081/api/v1.0/flight/airline/searchschedule",searchSchedule);
+    return this.http.post<FlightResult[]>(this.FLIGHT_URL+"/searchschedule",searchSchedule);
   }
 
   createFlight(createRequest: createFlight){
-    return this.http.post<FlightResult>("http://localhost:8081/api/v1.0/flight/airline/inventory/add", createRequest);
+    return this.http.post<FlightResult>(this.FLIGHT_URL+"/inventory/add", createRequest);
+  }
+
+  updateEndDate(updateSchedulRequest:{flightName: string, endDate: Date}){
+    return this.http.put(this.FLIGHT_URL+"/updateschedule",updateSchedulRequest);
   }
 
   

@@ -13,9 +13,10 @@ export default class BookingService{
     constructor(private http: HttpClient) {
        
     }
+    private FLIGHT_URL: string="http://44.201.139.156:8083/api/v1.0/user/flight";
 
     book(searchflight:SearchFlight){
-        return this.http.post<FlightResult[]>("http://localhost:8083/api/v1.0/user/flight/search",searchflight,{
+        return this.http.post<FlightResult[]>(this.FLIGHT_URL+"/search",searchflight,{
             headers:{
                 "content-type":"application/json",
             }
@@ -23,7 +24,7 @@ export default class BookingService{
     }
 
     allavailableSeat(searchRequest:any){
-        return this.http.post<String[]>("http://localhost:8083/api/v1.0/user/flight/availableseats/",searchRequest,{
+        return this.http.post<String[]>(this.FLIGHT_URL+"/availableseats/",searchRequest,{
             headers:{
                 "content-type": "application/json"
             }
@@ -32,7 +33,7 @@ export default class BookingService{
 
     bookticket(bookticket: BookTicket, flightid: number )
     {
-      return this.http.post<Ticket>("http://localhost:8083/api/v1.0/user/flight/booking/"+flightid,bookticket,{
+      return this.http.post<Ticket>(this.FLIGHT_URL+"/booking/"+flightid,bookticket,{
     headers:{
         "content-type":"application/json"
     }
@@ -41,7 +42,7 @@ export default class BookingService{
 
     getAllBookings(email: String)
     {
-      return this.http.get<Booking[]>("http://localhost:8083/api/v1.0/user/flight/booking/history/"+email,{
+      return this.http.get<Booking[]>(this.FLIGHT_URL+"/booking/history/"+email,{
     headers:{
         "content-type":"application/json"
     }
@@ -49,7 +50,7 @@ export default class BookingService{
     }
 
     cancelTicket(pnr : number){
-        return this.http.delete("http://localhost:8083/api/v1.0/user/flight/booking/cancel/"+pnr);
+        return this.http.delete(this.FLIGHT_URL+"/booking/cancel/"+pnr);
       }
 
     
