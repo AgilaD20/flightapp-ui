@@ -12,7 +12,8 @@ export class AdminService {
 
   constructor(private http: HttpClient) { }
 
-  private FLIGHT_URL: string="http://44.201.139.156:8081/api/v1.0/flight/airline";
+  private FLIGHT_URL: string="http://54.166.243.163:8081/api/v1.0/flight/airline";
+  //private FLIGHT_URL: string="http://localhost:8081/api/v1.0/flight/airline";
 
   addAirline(airlineDetails : AirlineDetails){
     return this.http.post<AirlineDetails>(this.FLIGHT_URL+"/register",airlineDetails);

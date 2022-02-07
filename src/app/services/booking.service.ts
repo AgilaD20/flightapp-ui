@@ -13,7 +13,8 @@ export default class BookingService{
     constructor(private http: HttpClient) {
        
     }
-    private FLIGHT_URL: string="http://44.201.139.156:8083/api/v1.0/user/flight";
+    //private FLIGHT_URL: string="http://localhost:8083/api/v1.0/user/flight";
+    private FLIGHT_URL: string="http://54.166.243.163:8083/api/v1.0/user/flight";
 
     book(searchflight:SearchFlight){
         return this.http.post<FlightResult[]>(this.FLIGHT_URL+"/search",searchflight,{

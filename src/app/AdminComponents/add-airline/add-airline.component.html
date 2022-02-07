@@ -1,4 +1,4 @@
-<div class="container">
+<div class="card">
     <p *ngIf="added" class="alert alert-success">{{successMessage}}</p>
     <form class="form-horizontal" [formGroup]="airlineForm" (ngSubmit)="addAirline()">
       <div class="form-group">

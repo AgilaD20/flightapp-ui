@@ -1,5 +1,6 @@
     <form [formGroup]="SearchScheduleForm" class="form-group bg-white" (ngSubmit)="getSchedules(SearchScheduleForm.value)" >
-      <div class="col-md-4">
+      <div class="row">
+      <div class="col-md-4 gap">
       <p><label  class="form-label" for="airlinename">Airline Name</label></p>
       <select id ="airlinename" class="form-control" type="text" formControlName="airlineName">
         <option value="-1">Select Airline</option>
@@ -17,6 +18,7 @@
     <div class="col-md-4 mb-3">
       <button type = "submit" class="btn btn-primary" value = "submit">Search schedule</button>
     </div>
+  </div>
 </form>
 <div *ngIf ="searchdone" class="row">
   <!-- <p>{{flight.airlineName}}</p> -->

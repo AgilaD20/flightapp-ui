@@ -21,8 +21,11 @@ export default class RegistrationService {
     currentAdminLogin = new BehaviorSubject(this.adminLogin);
 
     currentStatusLogin = new BehaviorSubject(this.loggedIn);
-    private FLIGHT_URL: string="http://44.201.139.156:8083/api/v1.0/user";
-    private ADMIN_URL : string="http://44.201.139.156:8081/api/v1.0/flight/airline";
+    private FLIGHT_URL: string="http://54.166.243.163:8083/api/v1.0/user";
+    private ADMIN_URL : string="http://54.166.243.163:8081/api/v1.0/flight/airline";
+
+    //private FLIGHT_URL: string="http://localhost:8083/api/v1.0/user";
+    //private ADMIN_URL : string="http://localhost:8081/api/v1.0/flight/airline";
 
     constructor(private http: HttpClient, private cookieService: CookieService, private router: Router) {
     }
